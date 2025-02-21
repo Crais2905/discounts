@@ -18,7 +18,6 @@ class Product(Base):
     category_id: Mapped[int] = mapped_column(Integer, ForeignKey("category.id"))
     category: Mapped['Category'] = relationship('Category', back_populates='products', lazy="selectin")
     image_url: Mapped[Optional[str]] = mapped_column(String, default=None)
-    store_url: Mapped[Optional[str]] = mapped_column(String, nullable=False)
 
 
 class Category(Base):
