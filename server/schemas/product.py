@@ -18,12 +18,12 @@ class ProductCreate(ProductBase):
 
 
 class ProductUpdate(BaseModel):
-    name: Optional[str] = Field(max_length=128)
-    price:  Optional[float] = Field(ge=0)
-    image_url: Optional[str] = Field(max_length=256)
-    current_discount_id: Optional[int]
-    store_id: Optional[int]
-    category_id: Optional[int]
+    name: Optional[str] = Field(default=None,max_length=128)
+    price:  Optional[float] = Field(default=None,ge=0)
+    image_url: Optional[str] = Field(default=None, max_length=256)
+    current_discount_id: Optional[int] = None
+    store_id: Optional[int] = None
+    category_id: Optional[int] = None
 
 
 class ProductPublic(ProductBase):

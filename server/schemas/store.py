@@ -8,8 +8,8 @@ class StoreCreate(BaseModel):
 
 
 class StoreUpdate(BaseModel):
-    name: Optional[str] = Field(max_length=128)
-    url: Optional[str] = Field(max_length=256)
+    name: Optional[str] = Field(default=None, max_length=128)
+    url: Optional[str] = Field(default=None, max_length=256)
 
 
 class StorePublic(StoreCreate):

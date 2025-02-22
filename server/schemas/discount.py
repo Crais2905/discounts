@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, PastDatetime, FutureDatetime
+from pydantic import BaseModel, Field
 from typing import Optional
 from datetime import datetime
 
@@ -13,12 +13,12 @@ class DiscountCreate(BaseModel):
 
 
 class DiscountUpdate(BaseModel):
-    old_price: Optional[int] = Field(gt=0)
-    new_price: Optional[int] = Field(ge=0)
-    discount_percent: Optional[int]
-    start_date: Optional[datetime]
-    end_date: Optional[datetime]
-    product_id: Optional[int]
+    old_price: Optional[int] = Field(default=None, gt=0)
+    new_price: Optional[int] = Field(default=None, ge=0)
+    discount_percent: Optional[int] = None
+    start_date: Optional[datetime] = None
+    end_date: Optional[datetime] = None
+    product_id: Optional[int] = None
 
 
 class DiscountPublic(DiscountCreate):

@@ -2,7 +2,7 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sess
 from decouple import config
 
 
-engine = create_async_engine(config('DATABASE_URL'), future=True, echo=True)
+engine = create_async_engine(config('DATABASE_URL'), future=True)
 SessionLocal = async_sessionmaker(
     engine,
     autoflush=False,
