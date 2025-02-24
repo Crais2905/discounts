@@ -27,3 +27,12 @@ class StoreCrud():
     async def get_store(self, store_id: int):
         stmt = select(Store).where(Store.id == store_id)
         return await self.session.scalar(stmt)
+    
+
+    async def update_store(self, store_id: int, store_data: StoreUpdate):
+        values = store_data.model_dump(exclude_unset=True)
+        stmt = update(Store).values(values).where(Store.id == store_id).returning(Store)
+        result = await self.session.execute(stmt)
+        await self.session.commit()     
+        inserted_store = result.scalar()
+        return inserted_store

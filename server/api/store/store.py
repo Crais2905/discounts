@@ -27,4 +27,19 @@ async def get_store(
     store_id: int,
     store_crud: StoreCrud = Depends(StoreCrud)
 ):
+    store = await store_crud.get_store(store_id)
+    if not store:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Store not found')
     return await store_crud.get_store(store_id)
+
+
+@router.patch("/{store_id}", response_model=StorePublic)
+async def part_update_store(
+    store_id: int,
+    store_data: StoreUpdate,
+    store_crud: StoreCrud = Depends(StoreCrud)
+):
+    store = await store_crud.get_store(store_id)
+    if not store:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Store not found')
+    return await store_crud.update_store(store_id, store_data)
