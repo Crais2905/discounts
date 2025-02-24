@@ -1,9 +1,9 @@
 import './BigPhoto.css'
 import  Button  from '../Button/Button'
 
-export default function Header() {
+export default function BigPhoto() {
     return (
-        <section>
+        <section className='bigphoto-section'>
             <div className='text-block'>
                 <h3>ШУКАЙТЕ АКЦІЙНІ ТОВАРИ ІЗ РІЗНИХ МАГАЗИНІВ ТУТ</h3>
                 <Button>Акційні товари</Button>

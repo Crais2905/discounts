@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from api.category.category import router as category_router
 from api.store.store import router as store_router
 from db.session import engine
@@ -6,6 +7,19 @@ from db.models import Base
 
 
 app = FastAPI(title='Discounts', version='1.0.0')
+
+origins = [
+    "http://localhost",
+    "http://localhost:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.on_event("startup")
 async def on_startup():

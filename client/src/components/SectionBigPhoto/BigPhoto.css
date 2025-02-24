@@ -1,4 +1,4 @@
-section {
+.bigphoto-section {
     display: flex;
     background-color: rgb(245, 245, 245);
 }
