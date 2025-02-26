@@ -6,7 +6,7 @@ from db.session import get_session
 from schemas.store import StoreCreate, StoreUpdate
 from db.models import Store
 
-class StoreCrud():
+class StoreCrud:
     def __init__(self, session: AsyncSession = Depends(get_session)):
         self.session = session
 

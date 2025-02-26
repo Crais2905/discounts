@@ -1,20 +1,34 @@
-from pydantic import BaseModel, Field
+from datetime import datetime
+
+from pydantic import BaseModel, Field, field_validator
 from typing import Optional
 from .category import CategoryPublic
 from .store import StorePublic
-from .discount import DiscountPublic
 
 
 class ProductBase(BaseModel):
     name: str = Field(max_length=128)
-    price: float = Field(ge=0)
-    image_url: str = Field(max_length=256)
+    image_url: Optional[str] = Field(None, max_length=256)
+    old_price: int = Field(gt=0)
+    new_price: int = Field(ge=0)
+    discount_percent: int
+    
 
 
 class ProductCreate(ProductBase):
-    current_discount_id: int
+    # current_discount_id: Optional[int] = None
     store_id: int
     category_id: int
+   
+    start_date: str
+    end_date: str
+
+    @field_validator("start_date", "end_date")
+    def parse_custom_date(cls, value):
+        try:
+            return datetime.strptime(str(value), f"%d-%m-%Y")
+        except ValueError:
+            raise ValueError("Дата повинна бути у форматі DD-MM-YYYY")
 
 
 class ProductUpdate(BaseModel):
@@ -28,6 +42,7 @@ class ProductUpdate(BaseModel):
 
 class ProductPublic(ProductBase):
     id: int
-    discount: DiscountPublic
     category: CategoryPublic
     store: StorePublic
+    start_date: datetime
+    end_date: datetime

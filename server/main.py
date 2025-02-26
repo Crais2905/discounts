@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from api.category.category import router as category_router
 from api.store.store import router as store_router
+from api.product.product import router as product_router
 from db.session import engine
 from db.models import Base
 
@@ -28,5 +29,7 @@ async def on_startup():
 
 app.include_router(category_router, tags=['category'], prefix='/categories')
 app.include_router(store_router, tags=['store'], prefix='/stories')
+app.include_router(product_router, tags=['product'], prefix='/products')
+
 
 
