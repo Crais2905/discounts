@@ -1,6 +1,7 @@
+from typing import List
 from fastapi import Depends
 from sqlalchemy.future import select
-from sqlalchemy import update, insert, delete
+from sqlalchemy import update, insert, delete, desc
 from sqlalchemy.ext.asyncio import AsyncSession
 from db.session import get_session
 from db.models import Product
@@ -18,3 +19,18 @@ class ProductCrud:
         await self.session.commit()     
         inserted_product = result.scalar()
         return inserted_product
+    
+
+    async def get_products(self, offset: int, limit: int, sorted_by_time: bool,  filters: List = []):
+        stmt = select(Product)
+        if filters:
+            stmt = stmt.where(*filters)
+        if sorted_by_time:
+            stmt = stmt.order_by(Product.end_date)
+        stmt = stmt.offset(offset).limit(limit)
+        return await self.session.scalars(stmt)
+    
+
+    async def get_product(self, product_id: int):
+        stmt = select(Product).where(Product.id == product_id)
+        return await self.session.scalars(stmt)
