@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, UploadFile
 from ..services.product_crud import ProductCrud
 from schemas.product import ProductCreate, ProductPublic, ProductUpdate
 from utils.filters import product_filters
@@ -36,3 +36,14 @@ async def get_product(
     if not product:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Product not found")
     return product
+
+
+# @router.patch("/{procduct_id}", response_model=ProductPublic)
+# async def add_product_image(
+#     product_id: int,
+#     image: UploadFile, 
+#     product_crud: ProductCrud = Depends(ProductCrud)
+# ):
+#     product = await product_crud.get_item(product_id)
+#     if not product:
+#         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Product not found')

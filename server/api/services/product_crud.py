@@ -33,4 +33,6 @@ class ProductCrud:
 
     async def get_product(self, product_id: int):
         stmt = select(Product).where(Product.id == product_id)
-        return await self.session.scalars(stmt)
+        return await self.session.scalar(stmt)
+        # stmt = select(Product).where(Product.id == product_id)
+        # return await self.session.scalar(stmt)

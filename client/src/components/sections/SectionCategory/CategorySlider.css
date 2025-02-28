@@ -1,0 +1,16 @@
+.category-section {
+    display: block;
+    margin-bottom: 56px;
+}
+
+
+h2 {
+    margin: 36px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+}

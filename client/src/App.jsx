@@ -1,29 +1,22 @@
+import './App.css'
+
 import React, { useEffect, useState } from 'react';
-import Header from './components/Header/Header'
-import BigPhoto from './components/SectionBigPhoto/BigPhoto'
-import CategorySlider from './components/SectionCategory/CategorySlider'
-import axios from "axios"
+import { Routes, Route } from 'react-router-dom';
+
+import ProductPage from './components/pages/ProductDetailPage/ProductDetailPage';
+import MainPage from './components/pages/MainPage/MainPage';
+
 
 export default function App() {
-  const [categories, setCategories] = useState([]);
 
-  const fetchCategory = () => {
-    axios.get('http://127.0.0.1:8000/categories/').then(r => {
-      const response = r.data;
-      setCategories(response); // зберігаємо отримані дані в стейт
-    });
-  };
-
-  useEffect(() => {
-    fetchCategory();
-  }, []);
 
   return (
     <>
-      <Header></Header>
-      <BigPhoto/>
-      <CategorySlider categories={categories}/>
+      <Routes>
+        <Route path="/" element={<MainPage/>} />
+        <Route path="/product/:id" element={<ProductPage />} />
+      </Routes>
     </>
-  )
+  );
 }
 

@@ -1,0 +1,22 @@
+.bigphoto-section {
+    display: flex;
+}
+
+h3 {
+    margin: 48px 0;
+    /* margin-top: 48px; */
+}
+
+.text-block {
+    font-size: 50px;
+    padding: 18px;
+    
+}
+
+.photo {
+    max-width: 935px;
+}
+
+.button {
+    text-align: center;
+}
