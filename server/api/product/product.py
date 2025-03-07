@@ -3,6 +3,9 @@ from ..services.product_crud import ProductCrud
 from schemas.product import ProductCreate, ProductPublic, ProductUpdate
 from utils.filters import product_filters
 
+import os
+import uuid
+
 router = APIRouter()
 
 
@@ -38,12 +41,28 @@ async def get_product(
     return product
 
 
-# @router.patch("/{procduct_id}", response_model=ProductPublic)
-# async def add_product_image(
-#     product_id: int,
-#     image: UploadFile, 
-#     product_crud: ProductCrud = Depends(ProductCrud)
-# ):
-#     product = await product_crud.get_item(product_id)
-#     if not product:
-#         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Product not found')
+@router.patch("/{product_id}", response_model=ProductPublic)
+async def add_product_image(
+    product_id: int,
+    image: UploadFile, 
+    product_crud: ProductCrud = Depends(ProductCrud)
+):
+    product = await product_crud.get_product(product_id)
+    if not product:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Product not found')
+    
+    file_extension = image.filename.split('.')[-1]
+    if file_extension not in ['jpg', 'png', 'jpeg']:
+        raise HTTPException(status_code=400, detail="Unsupported extension")
+    
+    file_path = os.path.join('static/product', f'{uuid.uuid4()}.{file_extension}')
+    with open(file_path, 'wb') as file:
+        file.write(image.file.read())
+
+    product.image_url = file_path
+    product_crud.session.add(product)
+    await product_crud.session.commit()
+    await product_crud.session.refresh(product)
+    return product
+
+

@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from api.category.category import router as category_router
 from api.store.store import router as store_router
@@ -26,6 +27,8 @@ app.add_middleware(
 async def on_startup():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+
+app.mount('/static', StaticFiles(directory='static'), name='static')
 
 app.include_router(category_router, tags=['category'], prefix='/categories')
 app.include_router(store_router, tags=['store'], prefix='/stories')
