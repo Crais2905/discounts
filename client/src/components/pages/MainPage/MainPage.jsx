@@ -22,7 +22,7 @@ export default function MainPage() {
     };
 
     const fetchProducts = () => {
-        axios.get('http://127.0.0.1:8000/products/').then(r => {
+        axios.get('http://127.0.0.1:8000/products/?offset=1&limit=5&max_new_price=300').then(r => {
         const response = r.data;
         setProducts(response)
         });
@@ -37,7 +37,7 @@ export default function MainPage() {
         <>
         <Header/>
         <BigPhoto/>
-        <CategorySlider categories={categories}/>
+        {/* <CategorySlider categories={categories}/> */}
         <FirstProduct products={products}/>
         </>
     );
