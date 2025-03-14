@@ -34,5 +34,11 @@ class ProductCrud:
     async def get_product(self, product_id: int):
         stmt = select(Product).where(Product.id == product_id)
         return await self.session.scalar(stmt)
-        # stmt = select(Product).where(Product.id == product_id)
-        # return await self.session.scalar(stmt)
+
+
+    async def delete_product(self, product_id: int):
+        stmt = delete(Product).where(Product.id == product_id).returning(Product)
+        result = await self.session.execute(stmt)
+        await self.session.commit()     
+        deleted_product = result.scalar()
+        return deleted_product

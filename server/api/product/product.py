@@ -9,7 +9,7 @@ import uuid
 router = APIRouter()
 
 
-@router.post("/", response_model=ProductPublic)
+@router.post("/", response_model=ProductPublic, status_code=status.HTTP_201_CREATED)
 async def create_product(
     product_data: ProductCreate,
     product_crud: ProductCrud = Depends(ProductCrud)
@@ -41,7 +41,7 @@ async def get_product(
     return product
 
 
-@router.patch("/{product_id}", response_model=ProductPublic)
+@router.patch("/image/{product_id}", response_model=ProductPublic)
 async def add_product_image(
     product_id: int,
     image: UploadFile, 
@@ -66,3 +66,13 @@ async def add_product_image(
     return product
 
 
+@router.delete("/{product_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_product(
+    product_id: int,
+    product_crud: ProductCrud = Depends(ProductCrud)
+):
+    product = await product_crud.get_product(product_id)
+    if not product:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Product not found')
+
+    return await product_crud.delete_product(product_id)
