@@ -1,11 +1,17 @@
 import './Card.css';
 import { Link } from 'react-router-dom';
 
-export default function Card({ id, title, image_url, old_price, new_price }) {
-    console.log({ image_url })
+export default function Card({ id, title, image_url, old_price, new_price, url_in_store }) {
+    const likeButtons = document.querySelectorAll(".card__btn");
+
+    likeButtons.forEach((likeButton) => {
+    likeButton.addEventListener("click", () => {
+        likeButton.classList.toggle("card__btn--like");
+    });
+    });
     
     return (
-        <Link to={`/product/${id}`} className='card-wrapper'>
+        <Link to={ url_in_store } className='card-wrapper'>
             <article className="card">
                 <div className="card__preview">
                     <img src={ `${image_url}` } alt="Lakeview Elegance preview"/>

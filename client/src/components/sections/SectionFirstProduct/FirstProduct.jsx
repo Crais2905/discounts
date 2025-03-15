@@ -15,6 +15,7 @@ export default function FirstProduct({ products }) {
                         image_url={product.image_url}
                         old_price = {product.old_price}
                         new_price = {product.new_price}
+                        url_in_store = {product.url_in_store}
                      />
                 ))}
            </div>

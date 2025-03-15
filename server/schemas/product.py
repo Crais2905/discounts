@@ -8,18 +8,18 @@ from .store import StorePublic
 
 class ProductBase(BaseModel):
     name: str = Field(max_length=128)
+    description: str
     image_url: Optional[str] = Field(None, max_length=256)
     old_price: int = Field(gt=0)
     new_price: int = Field(ge=0)
     discount_percent: int
+    url_in_store: str
     
 
 
 class ProductCreate(ProductBase):
-    # current_discount_id: Optional[int] = None
     store_id: int
     category_id: int
-   
     start_date: str
     end_date: str
 
@@ -36,6 +36,7 @@ class ProductUpdate(BaseModel):
     price:  Optional[float] = Field(default=None,ge=0)
     image_url: Optional[str] = Field(default=None, max_length=256)
     current_discount_id: Optional[int] = None
+    url_in_store: Optional[str] = None
     store_id: Optional[int] = None
     category_id: Optional[int] = None
 

@@ -11,11 +11,13 @@ class Product(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String, nullable=False)
+    description: Mapped[str] = mapped_column(String, nullable=False)
     old_price: Mapped[int] = mapped_column(Integer, nullable=False)  
     new_price: Mapped[int] = mapped_column(Integer, nullable=False)  
     discount_percent: Mapped[int] = mapped_column(Integer, nullable=False)
     start_date: Mapped[datetime] = mapped_column(DateTime, nullable=True)
     end_date: Mapped[datetime] = mapped_column(DateTime, nullable=False)
+    url_in_store: Mapped[str] = mapped_column(String, nullable=False)
     store_id: Mapped[int] = mapped_column(Integer, ForeignKey("store.id"), nullable=False)
     store: Mapped['Store'] = relationship("Store", back_populates='products',  lazy="selectin")
     category_id: Mapped[int] = mapped_column(Integer, ForeignKey("category.id"), nullable=False)
