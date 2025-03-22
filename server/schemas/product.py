@@ -10,8 +10,8 @@ class ProductBase(BaseModel):
     name: str = Field(max_length=128)
     description: str
     image_url: Optional[str] = Field(None, max_length=256)
-    old_price: int = Field(gt=0)
-    new_price: int = Field(ge=0)
+    old_price: float = Field(gt=0)
+    new_price: float = Field(ge=0)
     discount_percent: int
     url_in_store: str
     
