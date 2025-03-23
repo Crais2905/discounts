@@ -2,9 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, status, UploadFile
 from ..services.product_crud import ProductCrud
 from schemas.product import ProductCreate, ProductPublic, ProductUpdate
 from utils.filters import product_filters
-
-import os
-import uuid
+from utils.images import add_image
 
 router = APIRouter()
 
@@ -51,13 +49,7 @@ async def add_product_image(
     if not product:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Product not found')
     
-    file_extension = image.filename.split('.')[-1]
-    if file_extension not in ['jpg', 'png', 'jpeg']:
-        raise HTTPException(status_code=400, detail="Unsupported extension")
-    
-    file_path = os.path.join('static/product', f'{uuid.uuid4()}.{file_extension}')
-    with open(file_path, 'wb') as file:
-        file.write(image.file.read())
+    file_path = add_image(image)
 
     product.image_url = file_path
     product_crud.session.add(product)

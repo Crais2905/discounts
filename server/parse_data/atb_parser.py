@@ -1,6 +1,10 @@
+import os
+import uuid
 from bs4 import BeautifulSoup
 import cloudscraper
 import json
+
+import requests
 
 from .base_parser import ParserBase
 
@@ -44,9 +48,18 @@ class ATBParser(ParserBase):
         discount_text = product.find('div', class_='catalog-item__photo').find('div', class_='catalog-item__labels').find('span').text
         discount = discount_text.strip().replace('%', '').replace('\n', '').strip()
 
+        image_url = product.find('div', class_='catalog-item__photo').find('picture').find('img').get('src')
+        image_data = requests.get(image_url).content
+
+        file_extension = image_url.split('.')[-1]
+        file_path = os.path.join('static/product', f'{uuid.uuid4()}.{file_extension}')
+        with open(file_path, 'wb') as file:
+            file.write(image_data)
+
         data = {
             "name": str(name),
             "description": "qwerty",
+            "image_url": file_path,
             "old_price": float(old_price),
             "new_price": float(new_price),
             "discount_percent": int(discount),
@@ -56,6 +69,6 @@ class ATBParser(ParserBase):
             "start_date": "09-03-2025",
             "end_date": "16-03-2025"
         }
-        print(data)
+
         return data
     

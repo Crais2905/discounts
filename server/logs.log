@@ -2311,3 +2311,64 @@ you should set broker_connection_retry_on_startup to True.
 2025-03-22 20:33:56,019 - celery.redirected - WARNING - {'name': 'Набip для дитячої твоpчоcтi "Алмазна мозаїка" ', 'description': 'qwerty', 'old_price': 119.0, 'new_price': 159.0, 'discount_percent': -25, 'url_in_store': 'https://www.atbmarket.com/product/nabip-dla-ditacoi-tvopcocti-almazna-mozaika', 'store_id': 2, 'category_id': 1, 'start_date': '09-03-2025', 'end_date': '16-03-2025'}
 2025-03-22 20:33:56,231 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8000/products/ "HTTP/1.1 201 Created"
 2025-03-22 20:33:56,231 - celery.app.trace - INFO - Task celery_app.parse_atb[d3eef3c7-9755-4b10-802a-b4899b85aa02] succeeded in 4.452999999997701s: {'status': 'completed', 'items_sent': 18}
+2025-03-23 11:58:09,601 - py.warnings - WARNING - d:\Програмування\FastAPI\discounts\.venv\Lib\site-packages\celery\worker\consumer\consumer.py:508: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+2025-03-23 11:58:09,634 - celery.worker.consumer.connection - INFO - Connected to redis://localhost:6379/0
+2025-03-23 11:58:09,635 - py.warnings - WARNING - d:\Програмування\FastAPI\discounts\.venv\Lib\site-packages\celery\worker\consumer\consumer.py:508: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+2025-03-23 11:58:09,652 - celery.worker.consumer.mingle - INFO - mingle: searching for neighbors
+2025-03-23 11:58:10,724 - celery.worker.consumer.mingle - INFO - mingle: all alone
+2025-03-23 11:58:10,814 - celery.apps.worker - INFO - celery@DESKTOP-IO01P69 ready.
+2025-03-23 11:58:17,433 - celery.beat - INFO - beat: Starting...
+2025-03-23 11:58:17,535 - celery.beat - INFO - Scheduler: Sending due task test (celery_app.parse_atb)
+2025-03-23 11:58:17,560 - celery.worker.strategy - INFO - Task celery_app.parse_atb[0a9af3ec-814d-4aae-bf05-016134082227] received
+2025-03-23 11:58:17,732 - celery.redirected - WARNING - <class 'list'>
+2025-03-23 11:58:18,557 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8000/products/ "HTTP/1.1 201 Created"
+2025-03-23 11:58:18,558 - celery.app.trace - INFO - Task celery_app.parse_atb[0a9af3ec-814d-4aae-bf05-016134082227] succeeded in 0.9839999999967404s: {'status': 'completed', 'items_sent': 18}
+2025-03-23 12:03:54,831 - py.warnings - WARNING - d:\Програмування\FastAPI\discounts\.venv\Lib\site-packages\celery\worker\consumer\consumer.py:508: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+2025-03-23 12:03:54,842 - celery.worker.consumer.connection - INFO - Connected to redis://localhost:6379/0
+2025-03-23 12:03:54,843 - py.warnings - WARNING - d:\Програмування\FastAPI\discounts\.venv\Lib\site-packages\celery\worker\consumer\consumer.py:508: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+2025-03-23 12:03:54,854 - celery.worker.consumer.mingle - INFO - mingle: searching for neighbors
+2025-03-23 12:03:55,903 - celery.worker.consumer.mingle - INFO - mingle: all alone
+2025-03-23 12:03:55,967 - celery.apps.worker - INFO - celery@DESKTOP-IO01P69 ready.
+2025-03-23 12:04:01,794 - celery.beat - INFO - beat: Starting...
+2025-03-23 12:04:01,843 - celery.beat - INFO - Scheduler: Sending due task test (celery_app.parse_atb)
+2025-03-23 12:04:01,869 - celery.worker.strategy - INFO - Task celery_app.parse_atb[d1bd86d1-4522-4c3a-b9e3-b29dd917e61e] received
+2025-03-23 12:04:02,043 - celery.redirected - WARNING - <class 'list'>
+2025-03-23 12:04:02,495 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8000/products/ "HTTP/1.1 201 Created"
+2025-03-23 12:04:02,790 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8000/products/ "HTTP/1.1 201 Created"
+2025-03-23 12:04:03,106 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8000/products/ "HTTP/1.1 201 Created"
+2025-03-23 12:04:03,428 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8000/products/ "HTTP/1.1 201 Created"
+2025-03-23 12:04:03,745 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8000/products/ "HTTP/1.1 201 Created"
+2025-03-23 12:04:04,086 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8000/products/ "HTTP/1.1 201 Created"
+2025-03-23 12:04:04,411 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8000/products/ "HTTP/1.1 201 Created"
+2025-03-23 12:04:04,757 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8000/products/ "HTTP/1.1 201 Created"
+2025-03-23 12:04:05,103 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8000/products/ "HTTP/1.1 201 Created"
+2025-03-23 12:04:05,390 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8000/products/ "HTTP/1.1 201 Created"
+2025-03-23 12:04:05,676 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8000/products/ "HTTP/1.1 201 Created"
+2025-03-23 12:04:05,966 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8000/products/ "HTTP/1.1 201 Created"
+2025-03-23 12:04:06,278 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8000/products/ "HTTP/1.1 201 Created"
+2025-03-23 12:04:06,622 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8000/products/ "HTTP/1.1 201 Created"
+2025-03-23 12:04:06,920 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8000/products/ "HTTP/1.1 201 Created"
+2025-03-23 12:04:07,225 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8000/products/ "HTTP/1.1 201 Created"
+2025-03-23 12:04:07,584 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8000/products/ "HTTP/1.1 201 Created"
+2025-03-23 12:04:07,916 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8000/products/ "HTTP/1.1 201 Created"
+2025-03-23 12:04:07,917 - celery.app.trace - INFO - Task celery_app.parse_atb[d1bd86d1-4522-4c3a-b9e3-b29dd917e61e] succeeded in 6.046999999991385s: {'status': 'completed', 'items_sent': 18}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import CategorySlider from "../../sections/SectionCategory/CategorySlider";
+
 import FirstProduct from "../../sections/SectionFirstProduct/FirstProduct";
 import BigPhoto from '../../sections/SectionBigPhoto/BigPhoto'
 import Header from '../../Header/Header'
@@ -17,7 +17,7 @@ export default function MainPage() {
     const fetchCategory = () => {
         axios.get('http://127.0.0.1:8000/categories/?limit=5').then(r => {
         const response = r.data;
-        setCategories(response); // зберігаємо отримані дані в стейт
+        setCategories(response); 
         });
     };
 
@@ -29,7 +29,7 @@ export default function MainPage() {
     };
 
     useEffect(() => {
-        fetchCategory();
+        // fetchCategory();
         fetchProducts();
     }, []);
 
@@ -38,7 +38,7 @@ export default function MainPage() {
         <Header/>
         <BigPhoto/>
         {/* <CategorySlider categories={categories}/> */}
-        <FirstProduct products={products}/>
+        <FirstProduct products={ products }/>
         </>
     );
 }
