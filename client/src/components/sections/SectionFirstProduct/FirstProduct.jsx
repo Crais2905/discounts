@@ -4,8 +4,8 @@ import Card from '../../Card/Card'
 
 export default function FirstProduct({ products }) {
     return (
-        <section className='product-section'>
-           <h2>Products</h2>
+        <section className='cards-section'>
+           <h2>Найновіші акції</h2>
            <div className='card-container'>
            {products.slice(0, 4).map((product) => (
                     <Card 

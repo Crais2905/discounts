@@ -5,8 +5,8 @@ import ItemProduct from '../../ItemProduct/ItemProduct'
 export default function SectionProducts({ products }) {
     return (
         <section className='product-section'>
-           <h1>Акційні товари</h1>
-           <div className='card-container'>
+           <h2>Акційні товари</h2>
+           <div className='product-container'>
            {products.slice(0, 10).map((product) => (
                     <ItemProduct
                         key={product.id}

@@ -1,3 +1,16 @@
-.product-section {
+h2 {
+    margin-top: 52px;
+}
+
+
+.cards-section {
     margin-bottom: 54px;
+    text-align: center;
+}
+
+
+.card-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

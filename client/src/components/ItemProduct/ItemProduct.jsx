@@ -17,7 +17,7 @@ export default function Card({ id, title, image_url, old_price, new_price, url_i
                     <img src={ `${image_url}` } alt="" />
                 </div>
                 <div className='item-content'>
-                    <h2>{ title }</h2>
+                    <h3>{ title }</h3>
                 </div>
             </article>
         </Link>

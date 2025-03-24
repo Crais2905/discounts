@@ -1,14 +1,28 @@
 import './Card.css';
 import { Link } from 'react-router-dom';
+import { useState } from "react";
 
 export default function Card({ id, title, image_url, old_price, new_price, url_in_store }) {
     const likeButtons = document.querySelectorAll(".card__btn");
+    const [isLiked, setIsLiked] = useState(false);
 
     likeButtons.forEach((likeButton) => {
     likeButton.addEventListener("click", () => {
         likeButton.classList.toggle("card__btn--like");
     });
     });
+
+    const handleClick = (event, id, name ) => {
+        event.stopPropagation(); 
+        event.preventDefault(); 
+        setIsLiked((prev) => !prev);
+
+        if (!isLiked) {
+            console.log(`Товар ${id} додано в обране`)
+        } else {
+            console.log(`Товар ${id} видалено з обраного`)
+        }
+    }
     
     return (
         <Link to={ url_in_store } className='card-wrapper'>
@@ -17,19 +31,16 @@ export default function Card({ id, title, image_url, old_price, new_price, url_i
                     <img src={ `${image_url}` } alt="Lakeview Elegance preview"/>
                 </div>
                 <div className="card__content">
-                    <h2 className="card__title">{ title }</h2>
-                    <p className="card__description">
-                        Nestled along the tranquil shores of a pristine lake, Lakeview Lakeside offers an idyllic escape
-                        into nature's embrace. This exquisite property combines rustic charm with modern luxury, featuring a spacious, elegantly
-                        designed home with panoramic lake views. Each room is crafted to maximize the connection with the natural surroundings,
-                        offering large windows and outdoor spaces that blend seamlessly with the serene lakeside setting.
-                    </p>
+                    <h3 className="card__title"> {title.length > 50 ? title.slice(0, 50) + "..." : title}</h3>
                     <div className="card__bottom">
                         <div className="card__price">
                             <span className="card__price__span"><s>{ old_price }  </s></span>
                             <b>{ new_price } грн</b>
                         </div>
-                        <button className="card__btn">
+                        <button 
+                            className={`card__btn ${isLiked ? "card__btn--like" : ""}`} 
+                            onClick={(event) => handleClick(event, id, title)}
+                            >
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round"
                                 strokeLinejoin="round">
