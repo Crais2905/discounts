@@ -11,8 +11,8 @@ export default function Card({ id, title, image_url, old_price, new_price, url_i
     // });
     
     return (
-        <Link to={ url_in_store } className='item-wrapper'>
-            <article className="item">
+        <Link to={ url_in_store } className='item-wrapper' key={ id }>
+            <article className="item" >
                 <div className='item-image'>
                     <img src={ `${image_url}` } alt="" />
                 </div>

@@ -37,9 +37,9 @@ def parse_atb():
         with httpx.Client() as client:
             response = client.post(f"http://127.0.0.1:8000/products/", json=data, headers=headers)
 
-    # data = atb_parser.get_data(products_list[0])
-    # with httpx.Client() as client:
-    #     response = client.post(f"http://127.0.0.1:8000/products/", json=data, headers=headers)
+    data = atb_parser.get_data(products_list[0])
+    with httpx.Client() as client:
+        response = client.post(f"http://127.0.0.1:8000/products/", json=data, headers=headers)
     return {"status": "completed", "items_sent": len(products_list)}
 
 

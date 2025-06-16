@@ -1,9 +1,11 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
+
 from api.category.category import router as category_router
 from api.store.store import router as store_router
 from api.product.product import router as product_router
+
 from db.session import engine
 from db.models import Base
 
