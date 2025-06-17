@@ -1,10 +1,35 @@
-version: '3.8'
 
 services:
-  web:
-    build: .
-    command: uvicorn app.main:app --host 0.0.0.0
+  db:
+    image: postgres
+    restart: always
+    env_file:
+      - .env
     volumes:
-      - .:/app
+      - postgres_data:/var/lib/postgresql/data
     ports:
-      - 8008:8000
+      - "5432:5432"
+
+  backend:
+    build: ./server
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - static_volume:/server/static
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  
+  frontend:
+    build: ./client
+    restart: always
+    ports: 
+      - "5173:5173"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+  static_volume:
